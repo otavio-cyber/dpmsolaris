@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solaris Residencial – Ribeirão Preto | DPM Construtora</title>
+    <meta name="description"
+        content="Solaris Residencial em Ribeirão Preto. Apartamentos de 85m² e 108m² com lazer completo. DPM Construtora.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─── RESET & TOKENS ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E2C97E;
+            --gold-dark: #9A7330;
+            --cream: #F8F3EC;
+            --warm-white: #FDFAF5;
+            --charcoal: #1E1A14;
+            --mid: #5A5040;
+            --soft: #9A8E7E;
+            --section-pad: clamp(70px, 10vw, 120px);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--warm-white);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(20px, 5vw, 60px);
+            height: 72px;
+            background: rgba(30, 26, 20, 0.0);
+            backdrop-filter: blur(0px);
+            transition: background 0.5s ease, backdrop-filter 0.5s ease, height 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(86, 86, 86, 0.95);
+            backdrop-filter: blur(14px);
+            height: 60px;
+        }
+
+        .nav-logo img {
+            height: 42px;
+            object-fit: contain;
+
+            opacity: 0.95;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: clamp(20px, 3vw, 40px);
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--charcoal) !important;
+            padding: 9px 22px;
+            border-radius: 2px;
+            font-weight: 700 !important;
+            letter-spacing: 1px !important;
+            transition: background 0.3s, transform 0.2s !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+            color: var(--charcoal) !important;
+            transform: translateY(-1px);
+        }
+
+        /* ─── HAMBURGER ─── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 17, 12, 0.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 5vw, 30px);
+            font-style: italic;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('assets/images/hero/fundo-home3.avif') center / cover no-repeat;
+            z-index: 0;
+            transform: scale(1.05);
+            animation: heroZoom 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1.05);
+            }
+
+            to {
+                transform: scale(1.12);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right,
+                    rgba(15, 12, 8, 0.78) 0%,
+                    rgba(15, 12, 8, 0.50) 50%,
+                    rgba(15, 12, 8, 0.10) 100%);
+            z-index: 1;
+        }
+
+        .hero-fachada {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 2;
+            height: 92vh;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-fachada img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            object-position: bottom right;
+            filter: drop-shadow(-30px 0 60px rgba(0, 0, 0, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 580px;
+            padding: clamp(20px, 5vw, 60px);
+            margin-left: clamp(20px, 8vw, 120px);
+            margin-right: auto;
+            animation: heroFadeIn 1.2s ease both;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            width: clamp(140px, 20vw, 220px);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 5vw, 58px);
+            font-weight: 600;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gold);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 13px 28px;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: scrollBounce 2.5s ease-in-out infinite;
+        }
+
+        .hero-scroll svg {
+            width: 24px;
+            opacity: 0.5;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(6px);
+            }
+        }
+
+        /* ─── SECTION BASE ─── */
+        section {
+            padding: var(--section-pad) clamp(20px, 5vw, 60px);
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: 600;
+            color: var(--charcoal);
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--gold-dark);
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            margin: 0 auto 48px;
+            border-radius: 1px;
+        }
+
+        /* ─── SOBRE ─── */
+        #about {
+            background: var(--cream);
+        }
+
+        .about-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--mid);
+            margin-bottom: 20px;
+        }
+
+        .about-highlight {
+            color: var(--charcoal);
+            font-weight: 400;
+        }
+
+        .tipologia-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tip-card {
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-left: 3px solid var(--gold);
+            padding: 24px 28px;
+            background: var(--warm-white);
+            border-radius: 0 4px 4px 0;
+            transition: box-shadow 0.3s;
+        }
+
+        .tip-card:hover {
+            box-shadow: 0 8px 32px rgba(201, 168, 76, 0.12);
+        }
+
+        .tip-area {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gold-dark);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .tip-desc {
+            font-size: 15px;
+            color: var(--mid);
+            font-weight: 300;
+        }
+
+        /* ─── GALERIA ─── */
+        #gallery {
+            background: var(--charcoal);
+        }
+
+        #gallery .section-label {
+            color: var(--gold-light);
+        }
+
+        #gallery .section-title {
+            color: var(--warm-white);
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 6px;
+        }
+
+        .gallery-grid .g-item {
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+
+        .gallery-grid .g-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+
+        .gallery-grid .g-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(201, 168, 76, 0);
+            transition: background 0.4s;
+        }
+
+        .gallery-grid .g-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-grid .g-item:hover::after {
+            background: rgba(201, 168, 76, 0.15);
+        }
+
+        .gallery-zoom-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-zoom-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #fff;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        .g-item:hover .gallery-zoom-icon {
+            opacity: 1;
+        }
+
+        /* ─── VÍDEO ─── */
+        #video {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .video-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+            aspect-ratio: 16/9;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ─── PLANTAS ─── */
+        #plantas {
+            background: var(--warm-white);
+        }
+
+        .plantas-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .planta-card {
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .planta-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+        }
+
+        .planta-card img {
+            width: 100%;
+            height: 360px;
+            display: block;
+        }
+
+        .planta-label {
+            padding: 18px 24px;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--charcoal);
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            text-align: center;
+        }
+
+        .planta-label span {
+            display: block;
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 4px;
+        }
+
+        /* ─── CONDOMÍNIO ─── */
+        #condominio {
+            background: var(--charcoal);
+        }
+
+        #condominio .section-label {
+            color: var(--gold-light);
+        }
+
+        #condominio .section-title {
+            color: var(--warm-white);
+        }
+
+        .cond-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .amenidades-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+        }
+
+        .amenidades-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.3px;
+        }
+
+        .amenidades-list li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        /* slider */
+        .slider {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .slider-track {
+            position: relative;
+        }
+
+        .slider-track img {
+            display: none;
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            animation: sliderFade 0.5s ease;
+        }
+
+        .slider-track img.active {
+            display: block;
+        }
+
+        @keyframes sliderFade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 18px;
+            right: 18px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(20, 17, 12, 0.7);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            color: var(--gold);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 2px;
+            display: grid;
+            place-items: center;
+            transition: background 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .slider-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cond-sub {
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .cond-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 3vw, 34px);
+            color: var(--warm-white);
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        /* ─── LOCAL ─── */
+        #local {
+            background: var(--cream);
+        }
+
+        .local-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .local-img {
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .local-img img {
+            width: 100%;
+            height: 360px;
+            display: block;
+        }
+
+        .local-map {
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .local-map iframe {
+            width: 100%;
+            height: 360px;
+            border: none;
+            display: block;
+        }
+
+        .local-address {
+            text-align: center;
+            font-size: 14px;
+            color: var(--soft);
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+
+        /* ─── CONTATO ─── */
+        #contato {
+            background: var(--warm-white);
+        }
+
+        .contato-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 2px;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--charcoal);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input::placeholder {
+            color: var(--soft);
+        }
+
+        .form-group input:focus {
+            border-color: var(--gold);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .form-submit:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .contato-info {
+            padding-top: 8px;
+        }
+
+        .contato-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--gold);
+            fill: none;
+        }
+
+        .info-text {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--mid);
+            line-height: 1.6;
+        }
+
+        .info-text strong {
+            display: block;
+            font-weight: 700;
+            color: var(--charcoal);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--charcoal);
+            padding: 48px clamp(20px, 5vw, 60px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-copy a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-logo img {
+            height: 36px;
+            object-fit: contain;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo:hover img {
+            opacity: 1;
+        }
+
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin-bottom: 8px;
+        }
+
+        /* ─── MODAL ─── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 5, 0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-overlay img {
+            max-width: 90vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 2px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+            cursor: default;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-fachada {
+                display: none;
+            }
+
+            .hero-content {
+                margin: 0;
+                text-align: center;
+                max-width: 500px;
+                padding: 20px;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .about-grid,
+            .cond-wrapper,
+            .local-grid,
+            .plantas-grid,
+            .contato-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid .g-item:nth-child(1),
+            .gallery-grid .g-item:nth-child(5) {
+                grid-column: span 2;
+            }
+
+            footer {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid .g-item,
+            .gallery-grid .g-item:nth-child(1),
+            .gallery-grid .g-item:nth-child(5) {
+                grid-column: span 1;
+            }
+
+            .gallery-grid .g-item img,
+            .gallery-grid .g-item:nth-child(1) img {
+                height: 220px;
+            }
+
+            .amenidades-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <img src="assets/images/logo/logo_header.png" alt="Solaris Residencial">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#gallery">Galeria</a></li>
+            <li><a href="#plantas">Plantas</a></li>
+            <li><a href="#condominio">Condomínio</a></li>
+            <li><a href="#local">Localização</a></li>
+            <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ═══ MENU MOBILE ═══ -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobile()">Sobre</a>
+        <a href="#gallery" onclick="closeMobile()">Galeria</a>
+        <a href="#plantas" onclick="closeMobile()">Plantas</a>
+        <a href="#condominio" onclick="closeMobile()">Condomínio</a>
+        <a href="#local" onclick="closeMobile()">Localização</a>
+        <a href="#contato" onclick="closeMobile()">Contato</a>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <picture class="hero-fachada">
+            <img src="assets/images/hero/fachada-solaris.webp" alt="Fachada Solaris Residencial">
+        </picture>
+        <div class="hero-content">
+            <h1>Solaris&nbsp<em>Residencial</em></h1>
+            <p class="hero-eyebrow">Ribeirão Preto · SP</p>
+            <h1>O Seu Lugar,<br><em>O Seu Viver.</em></h1>
+            <p class="hero-sub">Apartamentos de 85m² e 108m² com projeto arquitetônico exclusivo e 3.000m² de lazer
+                completo.</p>
+            <div class="hero-btns">
+                <a href="#contato" class="btn-primary">Quero Saber Mais</a>
+                <a href="#gallery" class="btn-outline">Ver Galeria</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ═══ SOBRE ═══ -->
+    <section id="about">
+        <span class="section-label reveal">Sobre o Empreendimento</span>
+        <h2 class="section-title reveal">Viver com <em>sofisticação</em></h2>
+        <div class="section-divider reveal"></div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>O <span class="about-highlight">Solaris Residencial</span> é um empreendimento que une design
+                    contemporâneo, conforto e localização privilegiada no coração de <span
+                        class="about-highlight">Ribeirão Preto</span>. Cada detalhe foi pensado para proporcionar uma
+                    experiência de moradia única.</p>
+                <p>Com lazer completo em 3.000m², o Solaris oferece estrutura de resort dentro do seu próprio
+                    condomínio, sem abrir mão da praticidade urbana e da proximidade com os melhores serviços da cidade.
+                </p>
+            </div>
+            <div class="tipologia-cards reveal reveal-delay-2">
+                <div class="tip-card">
+                    <div class="tip-area">85m²</div>
+                    <div class="tip-desc">2 Suítes · Sala ampliada · Varanda gourmet</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-area">108m²</div>
+                    <div class="tip-desc">3 Suítes · Living integrado · Varanda gourmet</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ GALERIA ═══ -->
+    <section id="gallery">
+        <span class="section-label reveal">Perspectivas</span>
+        <h2 class="section-title reveal">Galeria de <em>Imagens</em></h2>
+        <div class="section-divider reveal"></div>
+        <div class="gallery-grid reveal" id="galleryContainer"></div>
+    </section>
+
+    <!-- ═══ VÍDEO ═══ -->
+    <section id="video">
+        <span class="section-label reveal">Conheça em Detalhes</span>
+        <h2 class="section-title reveal">Assista ao <em>Tour Virtual</em></h2>
+        <div class="section-divider reveal"></div>
+        <div class="video-wrapper reveal">
+            <iframe src="https://www.youtube.com/embed/X0vWux2uW6A" allowfullscreen
+                title="Tour Virtual Solaris"></iframe>
+        </div>
+    </section>
+
+    <!-- ═══ PLANTAS ═══ -->
+    <section id="plantas">
+        <span class="section-label reveal">Tipologias</span>
+        <h2 class="section-title reveal">Planta <em>Humanizada</em></h2>
+        <div class="section-divider reveal"></div>
+        <div class="plantas-grid">
+            <div class="planta-card reveal reveal-delay-1" onclick="openModal('assets/images/plantas/planta-85m.webp')">
+                <img src="assets/images/plantas/planta-85m.webp" alt="Planta 85m²">
+                <div class="planta-label">Planta de 85 m² <span>2 Suítes · Clique para ampliar</span></div>
+            </div>
+            <div class="planta-card reveal reveal-delay-2"
+                onclick="openModal('assets/images/plantas/planta-108m.webp')">
+                <img src="assets/images/plantas/planta-108m.webp" alt="Planta 108m²">
+                <div class="planta-label">Planta de 108 m² <span>3 Suítes · Clique para ampliar</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONDOMÍNIO ═══ -->
+    <section id="condominio">
+        <span class="section-label reveal">Infraestrutura de Resort</span>
+        <h2 class="section-title reveal">3.000 m² de <em>Lazer & Conforto</em></h2>
+        <div class="section-divider reveal"></div>
+        <div class="cond-wrapper">
+            <div>
+                <p class="cond-heading reveal">Tudo que você precisa,<br>dentro do seu condomínio.</p>
+                <ul class="amenidades-list reveal">
+                    <li>Family Club</li>
+                    <li>Pet Place</li>
+                    <li>Piscinas</li>
+                    <li>Quadra Poliesportiva</li>
+                    <li>Churrasqueira</li>
+                    <li>Beach Tennis</li>
+                    <li>Salão de Festas</li>
+                    <li>Espaço Gourmet</li>
+                    <li>Coworking</li>
+                    <li>Brinquedoteca</li>
+                    <li>Academia</li>
+                    <li>Varanda de Jogos</li>
+                    <li>Playground</li>
+                </ul>
+            </div>
+            <div class="slider reveal reveal-delay-2">
+                <div class="slider-track" id="sliderContainer"></div>
+                <div class="slider-counter" id="sliderCounter">1 / 8</div>
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="changeSlide(-1)">&#8249;</button>
+                    <button class="slider-btn" onclick="changeSlide(1)">&#8250;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ LOCALIZAÇÃO ═══ -->
+    <section id="local">
+        <span class="section-label reveal">Endereço</span>
+        <h2 class="section-title reveal">Localização <em>Estratégica</em></h2>
+        <div class="section-divider reveal"></div>
+        <p class="local-address reveal">R. Três, 110 — Residencial Taiwan — Ribeirão Preto / SP</p>
+        <div class="local-grid">
+            <div class="local-img reveal reveal-delay-1">
+                <img src="assets/images/local/local.avif" alt="Localização Solaris Residencial">
+            </div>
+            <div class="local-map reveal reveal-delay-2">
+                <iframe
+                    src="https://maps.google.com/maps?q=R.%20Tr%C3%AAs%20110%20Ribeir%C3%A3o%20Preto&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    title="Mapa Solaris"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONTATO ═══ -->
+    <section id="contato">
+        <span class="section-label reveal">Entre em Contato</span>
+        <h2 class="section-title reveal">Fale com um <em>Especialista</em></h2>
+        <div class="section-divider reveal"></div>
+        <div class="contato-grid">
+            <form class="reveal" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="WhatsApp / Telefone" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Seu melhor e-mail" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Cidade">
+                </div>
+                <button type="submit" class="form-submit">Solicitar Atendimento</button>
+            </form>
+
+            <div class="contato-info reveal reveal-delay-2">
+                <h3>Estamos aqui para você</h3>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <strong>E-mail</strong>
+                        dpm@dpmconstrutora.com.br
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <strong>Telefone</strong>
+                        (16) 3637-3739
+                    </div>
+                </div>
+
+                <div class="info-item">
+    <div class="info-icon">
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path stroke="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.969 2C6.456 2 2 6.456 2 11.969c0 1.99.58 3.836 1.573 5.395L2 22l4.761-1.573A9.9 9.9 0 0011.969 22C17.483 22 22 17.483 22 11.969 22 6.456 17.483 2 11.969 2z"/>
+        </svg>
+    </div>
+    <div class="info-text">
+        <strong>WhatsApp</strong>
+        <a href="https://wa.me/5516991916707?text=Olá!%20Tenho%20interesse%20no%20Solaris%20Residencial." target="_blank" style="color: inherit; text-decoration: none;">(16) 99191-6707</a>
+    </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">© 2025 Solaris Residencial · Todos os direitos reservados ·
+            Desenvolvido por <a href="https://www.dpmconstrutora.com.br/" target="_blank">DPM Construtora</a>
+        </p>
+        <a href="https://www.dpmconstrutora.com.br/" target="_blank" class="footer-logo">
+            <img src="assets/images/logo/logo-dpm.avif" alt="DPM Construtora">
+        </a>
+    </footer>
+
+    <!-- ═══ MODAL ═══ -->
+    <div class="modal-overlay" id="modal" onclick="closeModal()">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <img id="modal-img" src="" alt="Visualização" onclick="event.stopPropagation()">
+    </div>
+
+    <script>
+        /* ── NAV SCROLL ── */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        /* ── MOBILE MENU ── */
+        function toggleMobile() {
+            const m = document.getElementById('mobileMenu');
+            const h = document.getElementById('hamburger');
+            m.classList.toggle('open');
+            h.classList.toggle('open');
+        }
+        function closeMobile() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+        }
+
+        /* ── MODAL ── */
+        function openModal(src) {
+            document.getElementById('modal-img').src = src;
+            document.getElementById('modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => e.key === 'Escape' && closeModal());
+
+        /* ── SLIDER ── */
+        let slideIndex = 0;
+        let slidesTotal = 0;
+
+        function updateCounter() {
+            document.getElementById('sliderCounter').textContent = (slideIndex + 1) + ' / ' + slidesTotal;
+        }
+
+        function changeSlide(n) {
+            const slides = document.querySelectorAll('#sliderContainer img');
+            slides[slideIndex].classList.remove('active');
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            slides[slideIndex].classList.add('active');
+            updateCounter();
+        }
+
+        /* ── AUTO SLIDER ── */
+        setInterval(() => changeSlide(1), 4000);
+
+        /* ── GALLERY + SLIDER INIT ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gallery
+            const galleryContainer = document.getElementById('galleryContainer');
+            for (let i = 1; i <= 9; i++) {
+                const item = document.createElement('div');
+                item.className = 'g-item';
+                const src = `assets/images/gallery/placeholder-gallery${String(i).padStart(3, '0')}.webp`;
+                item.innerHTML = `
+      <img src="${src}" alt="Galeria ${i}" loading="lazy">
+      <div class="gallery-zoom-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+      </div>`;
+                item.querySelector('img').onclick = function () { openModal(this.src); };
+                galleryContainer.appendChild(item);
+            }
+
+            // Slider
+            const sliderContainer = document.getElementById('sliderContainer');
+            slidesTotal = 8;
+            for (let i = 1; i <= slidesTotal; i++) {
+                const img = document.createElement('img');
+                img.src = `assets/images/gallery-solaris/condominio${String(i).padStart(3, '0')}.jpg`;
+                img.alt = `Condomínio ${i}`;
+                img.loading = 'lazy';
+                if (i === 1) img.classList.add('active');
+                sliderContainer.appendChild(img);
+            }
+            updateCounter();
+        });
+
+        /* ── SCROLL REVEAL ── */
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(el => {
+                if (el.isIntersecting) {
+                    el.target.classList.add('visible');
+                    observer.unobserve(el.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => observer.observe(el));
+
+        /* ── FORM ── */
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit');
+            btn.textContent = '✓ Mensagem Enviada!';
+            btn.style.background = '#25D366';
+            setTimeout(() => {
+                btn.textContent = 'Solicitar Atendimento';
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+    </script>
+    <!-- WhatsApp Flutuante -->
+<a href="https://wa.me/5516991916707?text=Olá!%20Tenho%20interesse%20no%20Solaris%20Residencial." 
+   target="_blank" 
+   id="whatsapp-float"
+   style="
+     position: fixed;
+     bottom: 80px;
+     right: 28px;
+     z-index: 9999;
+     width: 58px;
+     height: 58px;
+     background: #25D366;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   ">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.969 2C6.456 2 2 6.456 2 11.969c0 1.99.58 3.836 1.573 5.395L2 22l4.761-1.573A9.9 9.9 0 0011.969 22C17.483 22 22 17.483 22 11.969 22 6.456 17.483 2 11.969 2z"/>
+  </svg>
+</a>
+
+<script>
+  const wf = document.getElementById('whatsapp-float');
+  wf.addEventListener('mouseenter', () => {
+    wf.style.transform = 'scale(1.12)';
+    wf.style.boxShadow = '0 6px 28px rgba(37, 211, 102, 0.6)';
+  });
+  wf.addEventListener('mouseleave', () => {
+    wf.style.transform = 'scale(1)';
+    wf.style.boxShadow = '0 4px 20px rgba(37, 211, 102, 0.45)';
+  });
+</script>
+
+</body>
+
+</html>
