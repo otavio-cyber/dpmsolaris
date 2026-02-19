@@ -1382,7 +1382,7 @@
     <!-- ═══ FOOTER ═══ -->
     <footer>
         <div class="footer-divider"></div>
-        <p class="footer-copy">© 2025 Solaris Residencial · Todos os direitos reservados ·
+        <p class="footer-copy">© <span id="ano"></span> Solaris Residencial · Todos os direitos reservados ·
             Desenvolvido por <a href="https://www.dpmconstrutora.com.br/" target="_blank">DPM Construtora</a>
         </p>
         <a href="https://www.dpmconstrutora.com.br/" target="_blank" class="footer-logo">
@@ -1536,6 +1536,10 @@
     wf.style.transform = 'scale(1)';
     wf.style.boxShadow = '0 4px 20px rgba(37, 211, 102, 0.45)';
   });
+</script>
+
+<script>
+  document.getElementById('ano').textContent = new Date().getFullYear();
 </script>
 
 </body>
