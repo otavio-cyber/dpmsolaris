@@ -59,6 +59,62 @@
             border-radius: 3px;
         }
 
+        /* ─── HERO LOGO PRINCIPAL ─── */
+        .hero-logo-main {
+            width: clamp(220px, 30vw, 380px);
+            display: block;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.35));
+            transform-origin: left center;
+            transition: opacity 0.4s ease;
+            will-change: opacity;
+        }
+
+        /* Estado quando o logo migrou para a nav (some do hero) */
+        .hero-logo-main.migrated {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Logo Solaris clonado na navbar */
+        #nav-logo-solaris {
+            height: 0px;
+            width: auto;
+            max-width: 180px;
+            opacity: 0;
+            overflow: hidden;
+            display: block;
+            transition: height 0.45s ease, opacity 0.45s ease, max-width 0.45s ease;
+            filter: brightness(0) invert(1);
+            /* branco na nav escura */
+            will-change: height, opacity;
+        }
+
+        #nav-logo-solaris.visible {
+            height: 36px;
+            opacity: 1;
+        }
+
+        /* Quando o logo solaris aparece na nav, o logo DPM some */
+        #nav-logo-dpm {
+            transition: opacity 0.4s ease, width 0.4s ease;
+            will-change: opacity;
+        }
+
+        #nav-logo-dpm.hidden {
+            opacity: 0;
+            width: 0;
+            pointer-events: none;
+        }
+
+        /* Wrapper da nav-logo vira flex para acomodar os dois */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+        }
+
         /* ─── NAV ─── */
         nav {
             position: fixed;
@@ -83,11 +139,13 @@
         }
 
         .nav-logo img {
-            height: 42px;
             object-fit: contain;
-
             opacity: 0.95;
             transition: opacity 0.3s;
+        }
+
+        #nav-logo-dpm {
+            height: 42px;
         }
 
         .nav-links {
@@ -286,11 +344,7 @@
             }
         }
 
-        .hero-logo {
-            width: clamp(140px, 20vw, 220px);
-            margin-bottom: 32px;
-            display: block;
-        }
+
 
         .hero-eyebrow {
             font-family: 'Lato', sans-serif;
@@ -954,7 +1008,7 @@
             margin-bottom: 2px;
         }
 
-        
+
 
         /* ─── FOOTER ─── */
         footer {
@@ -1144,8 +1198,8 @@
 
     <!-- ═══ NAVBAR ═══ -->
     <nav id="navbar">
-        <a href="#" class="nav-logo">
-            <img src="assets/images/logo/logo_header.png" alt="Solaris Residencial">
+        <a href="#home" class="nav-logo" id="nav-logo-wrap">
+            
         </a>
         <ul class="nav-links">
             <li><a href="#about">Sobre</a></li>
@@ -1178,7 +1232,7 @@
             <img src="assets/images/hero/fachada-solaris.webp" alt="Fachada Solaris Residencial">
         </picture>
         <div class="hero-content">
-            <h1>Solaris&nbsp<em>Residencial</em></h1>
+            <img src="assets/images/logo-solaris.webp" alt="Solaris Residencial" id="hero-logo" class="hero-logo-main">
             <p class="hero-eyebrow">Ribeirão Preto · SP</p>
             <h1>O Seu Lugar,<br><em>O Seu Viver.</em></h1>
             <p class="hero-sub">Apartamentos de 85m² e 108m² com projeto arquitetônico exclusivo e 3.000m² de lazer
@@ -1365,16 +1419,19 @@
                 </div>
 
                 <div class="info-item">
-    <div class="info-icon">
-        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <path stroke="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.969 2C6.456 2 2 6.456 2 11.969c0 1.99.58 3.836 1.573 5.395L2 22l4.761-1.573A9.9 9.9 0 0011.969 22C17.483 22 22 17.483 22 11.969 22 6.456 17.483 2 11.969 2z"/>
-        </svg>
-    </div>
-    <div class="info-text">
-        <strong>WhatsApp</strong>
-        <a href="https://wa.me/5516991916707?text=Olá!%20Tenho%20interesse%20no%20Solaris%20Residencial." target="_blank" style="color: inherit; text-decoration: none;">(16) 99191-6707</a>
-    </div>
-</div>
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            fill="none">
+                            <path stroke="currentColor"
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.969 2C6.456 2 2 6.456 2 11.969c0 1.99.58 3.836 1.573 5.395L2 22l4.761-1.573A9.9 9.9 0 0011.969 22C17.483 22 22 17.483 22 11.969 22 6.456 17.483 2 11.969 2z" />
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <strong>WhatsApp</strong>
+                        <a href="https://wa.me/5516991916707?text=Olá!%20Tenho%20interesse%20no%20Solaris%20Residencial."
+                            target="_blank" style="color: inherit; text-decoration: none;">(16) 99191-6707</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1397,12 +1454,6 @@
     </div>
 
     <script>
-        /* ── NAV SCROLL ── */
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
-        });
-
         /* ── MOBILE MENU ── */
         function toggleMobile() {
             const m = document.getElementById('mobileMenu');
@@ -1446,49 +1497,6 @@
         /* ── AUTO SLIDER ── */
         setInterval(() => changeSlide(1), 4000);
 
-        /* ── GALLERY + SLIDER INIT ── */
-        document.addEventListener('DOMContentLoaded', () => {
-            // Gallery
-            const galleryContainer = document.getElementById('galleryContainer');
-            for (let i = 1; i <= 9; i++) {
-                const item = document.createElement('div');
-                item.className = 'g-item';
-                const src = `assets/images/gallery/placeholder-gallery${String(i).padStart(3, '0')}.webp`;
-                item.innerHTML = `
-      <img src="${src}" alt="Galeria ${i}" loading="lazy">
-      <div class="gallery-zoom-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-      </div>`;
-                item.querySelector('img').onclick = function () { openModal(this.src); };
-                galleryContainer.appendChild(item);
-            }
-
-            // Slider
-            const sliderContainer = document.getElementById('sliderContainer');
-            slidesTotal = 8;
-            for (let i = 1; i <= slidesTotal; i++) {
-                const img = document.createElement('img');
-                img.src = `assets/images/gallery-solaris/condominio${String(i).padStart(3, '0')}.jpg`;
-                img.alt = `Condomínio ${i}`;
-                img.loading = 'lazy';
-                if (i === 1) img.classList.add('active');
-                sliderContainer.appendChild(img);
-            }
-            updateCounter();
-        });
-
-        /* ── SCROLL REVEAL ── */
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(el => {
-                if (el.isIntersecting) {
-                    el.target.classList.add('visible');
-                    observer.unobserve(el.target);
-                }
-            });
-        }, { threshold: 0.12 });
-        revealEls.forEach(el => observer.observe(el));
-
         /* ── FORM ── */
         function handleSubmit(e) {
             e.preventDefault();
@@ -1501,12 +1509,82 @@
                 e.target.reset();
             }, 3000);
         }
+
+        /* ── DOM READY ── */
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ── NAV SCROLL + LOGO MIGRATION ── */
+            const navbar = document.getElementById('navbar');
+            const heroLogo = document.getElementById('hero-logo');
+            const dpmLogo = document.getElementById('nav-logo-dpm') ?? { classList: { toggle: () => { } } };
+            const navSolaris = document.createElement('img');
+            navSolaris.src = 'assets/images/logo-solaris.webp';
+            navSolaris.alt = 'Solaris Residencial';
+            navSolaris.id = 'nav-logo-solaris';
+            document.getElementById('nav-logo-wrap').prepend(navSolaris);
+
+            function onScroll() {
+                const scrolled = window.scrollY > 60;
+                navbar.classList.toggle('scrolled', scrolled);
+                if (!heroLogo) return;
+                const logoGone = heroLogo.getBoundingClientRect().bottom < 72;
+                heroLogo.classList.toggle('migrated', logoGone);
+                navSolaris.classList.toggle('visible', logoGone);
+                dpmLogo.classList.toggle('hidden', logoGone);
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            /* ── GALLERY ── */
+            const galleryContainer = document.getElementById('galleryContainer');
+            for (let i = 1; i <= 9; i++) {
+                const item = document.createElement('div');
+                item.className = 'g-item';
+                const src = `assets/images/gallery/placeholder-gallery${String(i).padStart(3, '0')}.webp`;
+                item.innerHTML = `
+                <img src="${src}" alt="Galeria ${i}" loading="lazy">
+                <div class="gallery-zoom-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </div>`;
+                item.querySelector('img').onclick = function () { openModal(this.src); };
+                galleryContainer.appendChild(item);
+            }
+
+            /* ── SLIDER INIT ── */
+            const sliderContainer = document.getElementById('sliderContainer');
+            slidesTotal = 8;
+            for (let i = 1; i <= slidesTotal; i++) {
+                const img = document.createElement('img');
+                img.src = `assets/images/gallery-solaris/condominio${String(i).padStart(3, '0')}.jpg`;
+                img.alt = `Condomínio ${i}`;
+                img.loading = 'lazy';
+                if (i === 1) img.classList.add('active');
+                sliderContainer.appendChild(img);
+            }
+            updateCounter();
+
+            /* ── SCROLL REVEAL ── */
+            const revealEls = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(el => {
+                    if (el.isIntersecting) {
+                        el.target.classList.add('visible');
+                        observer.unobserve(el.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => observer.observe(el));
+
+            /* ── ANO FOOTER ── */
+            document.getElementById('ano').textContent = new Date().getFullYear();
+
+        }); // fecha DOMContentLoaded
     </script>
+
     <!-- WhatsApp Flutuante -->
-<a href="https://wa.me/5516991916707?text=Olá!%20Tenho%20interesse%20no%20Solaris%20Residencial." 
-   target="_blank" 
-   id="whatsapp-float"
-   style="
+    <a href="https://wa.me/5516991916707?text=Olá!%20Tenho%20interesse%20no%20Solaris%20Residencial." target="_blank"
+        id="whatsapp-float" style="
      position: fixed;
      bottom: 80px;
      right: 28px;
@@ -1521,26 +1599,23 @@
      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
      transition: transform 0.3s ease, box-shadow 0.3s ease;
    ">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.969 2C6.456 2 2 6.456 2 11.969c0 1.99.58 3.836 1.573 5.395L2 22l4.761-1.573A9.9 9.9 0 0011.969 22C17.483 22 22 17.483 22 11.969 22 6.456 17.483 2 11.969 2z"/>
-  </svg>
-</a>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.969 2C6.456 2 2 6.456 2 11.969c0 1.99.58 3.836 1.573 5.395L2 22l4.761-1.573A9.9 9.9 0 0011.969 22C17.483 22 22 17.483 22 11.969 22 6.456 17.483 2 11.969 2z" />
+        </svg>
+    </a>
 
-<script>
-  const wf = document.getElementById('whatsapp-float');
-  wf.addEventListener('mouseenter', () => {
-    wf.style.transform = 'scale(1.12)';
-    wf.style.boxShadow = '0 6px 28px rgba(37, 211, 102, 0.6)';
-  });
-  wf.addEventListener('mouseleave', () => {
-    wf.style.transform = 'scale(1)';
-    wf.style.boxShadow = '0 4px 20px rgba(37, 211, 102, 0.45)';
-  });
-</script>
-
-<script>
-  document.getElementById('ano').textContent = new Date().getFullYear();
-</script>
+    <script>
+        const wf = document.getElementById('whatsapp-float');
+        wf.addEventListener('mouseenter', () => {
+            wf.style.transform = 'scale(1.12)';
+            wf.style.boxShadow = '0 6px 28px rgba(37, 211, 102, 0.6)';
+        });
+        wf.addEventListener('mouseleave', () => {
+            wf.style.transform = 'scale(1)';
+            wf.style.boxShadow = '0 4px 20px rgba(37, 211, 102, 0.45)';
+        });
+    </script>
 
 </body>
 
