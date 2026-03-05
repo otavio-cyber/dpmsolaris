@@ -2,14 +2,29 @@
 <html lang="pt-br">
 
 <head>
+   
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K7F86MC7');</script>
+<!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solaris Residencial – Ribeirão Preto | DPM Construtora</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="description"
         content="Solaris Residencial em Ribeirão Preto. Apartamentos de 85m² e 108m² com lazer completo. DPM Construtora.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         /* ─── RESET & TOKENS ─── */
@@ -1195,10 +1210,15 @@
 
 <body>
 
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7F86MC7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
     <!-- ═══ NAVBAR ═══ -->
     <nav id="navbar">
         <a href="#home" class="nav-logo" id="nav-logo-wrap">
-            
+
         </a>
         <ul class="nav-links">
             <li><a href="#about">Sobre</a></li>
@@ -1266,11 +1286,11 @@
             <div class="tipologia-cards reveal reveal-delay-2">
                 <div class="tip-card">
                     <div class="tip-area">85m²</div>
-                    <div class="tip-desc">2 Suítes · Sala ampliada · Varanda gourmet</div>
+                    <div class="tip-desc">2 Suítes · Living integrado · Sala ampliada · Varanda gourmet</div>
                 </div>
                 <div class="tip-card">
                     <div class="tip-area">108m²</div>
-                    <div class="tip-desc">3 Suítes · Living integrado · Varanda gourmet</div>
+                    <div class="tip-desc">3 Suítes · Living integrado · Sala ampliada · Varanda gourmet</div>
                 </div>
             </div>
         </div>
@@ -1287,7 +1307,6 @@
     <!-- ═══ VÍDEO ═══ -->
     <section id="video">
         <span class="section-label reveal">Conheça em Detalhes</span>
-        <h2 class="section-title reveal">Assista ao <em>Tour Virtual</em></h2>
         <div class="section-divider reveal"></div>
         <div class="video-wrapper reveal">
             <iframe src="https://www.youtube.com/embed/X0vWux2uW6A" allowfullscreen
@@ -1372,19 +1391,23 @@
         <h2 class="section-title reveal">Fale com um <em>Especialista</em></h2>
         <div class="section-divider reveal"></div>
         <div class="contato-grid">
-            <form class="reveal" onsubmit="handleSubmit(event)">
+            <form class="reveal" action="https://formspree.io/f/xwvnyalw" method="POST">
                 <div class="form-group">
-                    <input type="text" placeholder="Seu nome completo" required>
+                    <input type="text" name="nome" placeholder="Seu nome completo" required>
                 </div>
+
                 <div class="form-group">
-                    <input type="tel" placeholder="WhatsApp / Telefone" required>
+                    <input type="tel" name="telefone" placeholder="WhatsApp / Telefone" required>
                 </div>
+
                 <div class="form-group">
-                    <input type="email" placeholder="Seu melhor e-mail" required>
+                    <input type="email" name="email" placeholder="Seu melhor e-mail" required>
                 </div>
+
                 <div class="form-group">
-                    <input type="text" placeholder="Cidade">
+                    <input type="text" name="cidade" placeholder="Cidade">
                 </div>
+
                 <button type="submit" class="form-submit">Solicitar Atendimento</button>
             </form>
 
