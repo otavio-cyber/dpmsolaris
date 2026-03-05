@@ -2,14 +2,17 @@
 <html lang="pt-br">
 
 <head>
-   
+
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K7F86MC7');</script>
-<!-- End Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K7F86MC7');</script>
+    <!-- End Google Tag Manager -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1211,9 +1214,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
 
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7F86MC7"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7F86MC7" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- ═══ NAVBAR ═══ -->
     <nav id="navbar">
@@ -1391,7 +1394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="section-title reveal">Fale com um <em>Especialista</em></h2>
         <div class="section-divider reveal"></div>
         <div class="contato-grid">
-            <form class="reveal" action="https://formspree.io/f/xwvnyalw" method="POST">
+            <form id="lead-form" class="reveal" action="https://formspree.io/f/xwvnyalw" method="POST">
                 <div class="form-group">
                     <input type="text" name="nome" placeholder="Seu nome completo" required>
                 </div>
@@ -1636,6 +1639,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         wf.addEventListener('mouseleave', () => {
             wf.style.transform = 'scale(1)';
             wf.style.boxShadow = '0 4px 20px rgba(37, 211, 102, 0.45)';
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("lead-form");
+
+            if (form) {
+                form.addEventListener("submit", function () {
+
+                    window.dataLayer = window.dataLayer || [];
+
+                    dataLayer.push({
+                        event: "form_lead",
+                        form_name: "solar_residencial"
+                    });
+
+                });
+            }
+
         });
     </script>
 
